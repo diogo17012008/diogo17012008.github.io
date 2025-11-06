@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Snacks Saludables</title>
+  <style>
+    :root{--bg:linear-gradient(90deg,#7FFF00, #3CB371);padding:2rem 1rem;--card:#5F9EA0 ;--accent:#000000;--muted: #000000}
+    body{font-family:Inter, system-ui, Arial, sans-serif;background:var(--bg);margin:0;color:#000000}
+    header{background:linear-gradient(90deg,#7FFF00, #3CB371);padding:2rem 1rem;}
+    .container{max-width:960px;margin:1.25rem auto;padding:0 1rem}
+
+    h1{margin:0 0 .25rem;font-size:1.75rem}
+    h2{color:var(--accent)}
+    p.lead{margin:0;color:var(--muted)}
+    .card{background:var(--card);border-radius:12px;padding:1rem;margin-top:1rem;box-shadow:0 6px 18px rgba(15,23,42,0.06)}
+    table{width:100%;border-collapse:collapse;margin-top:.5rem}
+    th,td{padding:.6rem .5rem;text-align:left;border-bottom:1px solid #000000 }
+    th{background:#FFFFF }
+    .small{font-size:.9rem;color:#000000}
+    input,select,button{padding:.5rem .6rem;border-radius:8px;border:1px solid #000000;font-size:1rem}
+    button{background:#FFFFFF ;color:#000000;border:#000000:none;cursor:pointer}
+    .note{font-size:.85rem;color:#000000;margin-top:.5rem}
+    iframe{border-radius:12px;box-shadow:0 6px 18px rgba(0,0,0,0.1);width:100%;height:400px;margin-top:1rem}
+    ul{margin:.5rem 0 .5rem 1.25rem}
+    li{margin-bottom:.25rem}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <h1 style="text-align:center;"> Snacks Saludables</h1>
+      <p style="text-align:center;">Conoce los snacks nutritivos, sus calorías, recetas y calcula tu salud actual.</p>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- Lista de snacks -->
+    <section class="card" id="lista-snacks">
+      <h2 style="text-align:center;">Lista de snack</h2>
+      <p class="small"style="text-align:center;">Calorías mostradas por porción aproximada.</p>
+      <table id="tabla-snacks">
+        <thead>
+          <tr>
+            <th>Snack</th>
+            <th>Descripción</th>
+            <th>Porción</th>
+            <th>Calorías</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Manzana</td><td>Manzana mediana (fuente de fibra)</td><td>1 unidad (~182 g)</td><td class="cal">95</td></tr>
+          <tr><td>Yogur natural</td><td>Yogur descremado sin azúcar</td><td>1 taza (245 g)</td><td class="cal">150</td></tr>
+          <tr><td>Almendras</td><td>Un puñado (grasas saludables)</td><td>28 g (~23 unidades)</td><td class="cal">160</td></tr>
+          <tr><td>Zanahorias baby</td><td>Ricas en betacarotenos</td><td>100 g</td><td class="cal">40</td></tr>
+          <tr><td>Palomitas de maíz</td><td>Sin mantequilla, solo aire caliente</td><td>3 tazas</td><td class="cal">90</td></tr>
+        </tbody>
+      </table>
+      <p class="note">Total de calorías de la tabla: <strong id="total-cal">0</strong> kcal</p>
+    </section>
+
+    <!-- Calculadora de IMC -->
+    <section class="card" id="calculadora">
+      <h2>Calculadora de IMC y Recomendación</h2>
+      <p class="small">Introduce tus datos para saber tu estado y recibir una recomendación de snack.</p>
+      <form id="form-imc" onsubmit="return calcularIMC()">
+        <div style="display:flex;gap:.5rem;flex-wrap:wrap">
+          <input id="peso" type="number" placeholder="Peso (kg)" required />
+          <input id="altura" type="number" placeholder="Altura (cm)" required />
+          <select id="sexo" required>
+            <option value="">Sexo</option>
+            <option value="h">Hombre</option>
+            <option value="m">Mujer</option>
+          </select>
+        </div>
+        <button type="submit" style="margin-top:.5rem">Calcular</button>
+      </form>
+      <p class="note">Tu IMC es: <strong id="resultado-imc">0</strong></p>
+      <p class="note">Categoría: <strong id="categoria">-</strong></p>
+      <p class="note">Recomendación: <strong id="recomendacion">-</strong></p>
+    </section>
+
+    <!-- Recetas -->
+    <section class="card" id="recetas">
+      <h2>Recetas Saludables</h2>
+
+      <article>
+        <h3>1. Yogur con frutas y avena (200 kcal)</h3>
+        <p>Un snack completo, refrescante y rico en fibra y proteínas.</p>
+        <ul>
+          <li><strong>Ingredientes:</strong> 1 taza de yogur natural, ½ manzana picada, 2 cucharadas de avena, 1 cucharadita de miel.</li>
+          <li><strong>Preparación:</strong> Mezcla todos los ingredientes en un bowl y disfruta frío.</li>
+        </ul>
+      </article>
+
+      <article>
+        <h3>2. Palomitas de maíz al aire (90 kcal)</h3>
+        <p>Ideales para ver una película sin sentir culpa.</p>
+        <ul>
+          <li><strong>Ingredientes:</strong> 3 tazas de maíz para palomitas, una pizca de sal.</li>
+          <li><strong>Preparación:</strong> Coloca el maíz en una máquina de aire caliente o sartén sin aceite hasta que revienten. Añade sal ligera.</li>
+        </ul>
+      </article>
+
+      <article>
+        <h3>3. Bastones de zanahoria con dip de yogur (120 kcal)</h3>
+        <p>Frescos, crujientes y llenos de sabor.</p>
+        <ul>
+          <li><strong>Ingredientes:</strong> 100 g de zanahorias baby, 3 cucharadas de yogur natural, limón, perejil picado.</li>
+          <li><strong>Preparación:</strong> Mezcla el yogur con limón y perejil, sirve como dip junto con las zanahorias.</li>
+          
+          
+          <section class="card" id="descargas">
+  <h3>APP de Ejercicios</h3>
+  <p class="small">Mejora tu alimentación y controla tus hábitos con estas apps recomendadas.</p>
+
+  <div style="display:flex;flex-wrap:wrap;gap:1rem;margin-top:1rem">
+    <a href="https://play.google.com/store/apps/details?id=loseweight.weightloss.workout.fitness" target="_blank" style="background:var(--accent);color:white;text-decoration:none;padding:.8rem 1rem;border-radius:10px;flex:1;text-align:center;">
+      Descargar Pierde peso en casa en 30 dias
+    </a>
+
+    <a href="https://play.google.com/store/apps/details?id=com.popularapp.thirtydayfitnesschallenge" target="_blank" style="background:var(--accent);color:white;text-decoration:none;padding:.8rem 1rem;border-radius:10px;flex:1;text-align:center;">
+      Descargar Reto Deportivo 30 Dias
+    </a>
+  </div>
+</section>
+
+        </ul>
+      </article>
+    </section>
+
+    <!-- Videos -->
+    <section class="card" id="videos">
+      <h2>Videos sobre alimentación saludable</h2>
+      <iframe src="https://www.youtube.com/embed/MfQ-rU6jz1A" title="Snacks saludables" allowfullscreen></iframe>
+      <iframe src="https://www.youtube.com/embed/_wK2qLRrj0A" title="Consejos de nutrición" allowfullscreen></iframe>
+    </section>
+  </main>
+
+  <script>
+    // Calcular total de calorías de la tabla
+    function actualizarTotal(){
+      const celdas=document.querySelectorAll('#tabla-snacks td.cal');
+      let total=0;
+      celdas.forEach(td=>total+=Number(td.textContent)||0);
+      document.getElementById('total-cal').textContent=total;
+    }
+    actualizarTotal();
+
+    // Calcular IMC
+    function calcularIMC(){
+      const peso=parseFloat(document.getElementById('peso').value);
+      const altura=parseFloat(document.getElementById('altura').value)/100;
+      const sexo=document.getElementById('sexo').value;
+      if(!peso||!altura||!sexo){alert('Completa todos los campos');return false;}
+
+      const imc=(peso/(altura*altura)).toFixed(1);
+      let categoria='', recomendacion='';
+
+      if(imc<18.5){
+        categoria='Bajo peso';
+        recomendacion='Incluye más calorías saludables, como almendras (160 kcal) o yogur con frutas (200 kcal).';
+      }else if(imc<24.9){
+        categoria='Peso normal';
+        recomendacion='Mantén tu equilibrio con frutas o bastones de zanahoria (40–120 kcal).';
+      }else if(imc<29.9){
+        categoria='Sobrepeso';
+        recomendacion='Prefiere opciones ligeras: palomitas sin mantequilla (90 kcal) o yogur descremado (150 kcal).';
+      }else{
+        categoria='Obesidad';
+        recomendacion='Evita azúcares y grasas; elige snacks frescos como pepino o apio (30 kcal).';
+      }
+
+      document.getElementById('resultado-imc').textContent=imc;
+      document.getElementById('categoria').textContent=categoria;
+      document.getElementById('recomendacion').textContent=recomendacion;
+
+      return false;
+    }
+  </script>
+</body>
+</html>
