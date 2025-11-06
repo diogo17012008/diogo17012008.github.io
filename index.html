@@ -6,7 +6,30 @@
   <title>Snacks Saludables</title>
   <style>
     :root{--bg:linear-gradient(90deg,#7FFF00, #3CB371);padding:2rem 1rem;--card:#5F9EA0 ;--accent:#000000;--muted: #000000}
-    body{font-family:Inter, system-ui, Arial, sans-serif;background:var(--bg);margin:0;color:#000000}
+    body{font-family:Inter, system-ui, Arial, sans-serif;background:var(--bg);margin:0;color:#000000}{
+      margin: 0;
+      padding: 0;
+      background-color: #f0f0f0;
+      display: flex;               /* activa el centrado */
+      justify-content: center;     /* centra horizontalmente */
+      align-items: center;         /* centra verticalmente */
+      min-height: 100vh;           /* ocupa toda la pantalla */
+    }
+
+    .contenedor-imagen {
+      max-width: 600px;            /* tamaño máximo */
+      width: 90%;                  /* ocupa el 90% del ancho en móviles */
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    }
+
+    .contenedor-imagen img {
+      width: 100%;                 /* que ocupe todo el ancho del contenedor */
+      height: auto;                /* mantiene proporción */
+      object-fit: cover;
+      display: block;
+    }
     header{background:linear-gradient(90deg,#7FFF00, #3CB371);padding:2rem 1rem;}
     .container{max-width:960px;margin:1.25rem auto;padding:0 1rem}
 
@@ -31,7 +54,7 @@
     <div class="container">
       <h1 style="text-align:center;"> Snacks Saludables</h1>
       <p style="text-align:center;">Conoce los snacks nutritivos, sus calorías, recetas y calcula tu salud actual.</p>
-       <img src="6dab955739647a0934c2af4fadbb0981.jpg">
+       <center><img src="6dab955739647a0934c2af4fadbb0981.jpg" alt="descripción"></center>
     </div>
   </header>
 
@@ -133,8 +156,8 @@
     <!-- Videos -->
     <section class="card" id="videos">
       <h2>Videos sobre alimentación saludable</h2>
-      <iframe src="https://www.youtube.com/embed/MfQ-rU6jz1A" title="Snacks saludables" allowfullscreen></iframe>
-      <iframe src="https://www.youtube.com/embed/_wK2qLRrj0A" title="Consejos de nutrición" allowfullscreen></iframe>
+      <iframe src="5 Recetas Fáciles y Saludables para Perder Grasa 🔥 Sin Pasar Hambre.mp4" title="Snacks saludables" allowfullscreen></iframe>
+      <iframe src="videoplayback.mp4" title="EJERCICIOS PARA HACER EN CASA" allowfullscreen></iframe>
     </section>
   </main>
 
